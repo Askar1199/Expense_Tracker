@@ -1,8 +1,13 @@
 // import { useState } from 'react'
 import "./App.css";
+import ExpenseForm from "./components/expenseForm";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <ExpenseForm />
+    </>
+  );
 }
 
 export default App;

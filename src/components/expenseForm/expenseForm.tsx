@@ -3,20 +3,34 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "../styleComp.css";
 import Formcontainer from "../formcontainer";
-import { useForm } from "react-hook-form";
-import type { FieldValues } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-const expenseForm = () => {
+
+interface datas {
+  description: string;
+  amount: Number;
+  category: string;
+}
+
+interface FormComponentProps {
+  onSubmit: (data: datas) => void;
+}
+
+const expenseForm: React.FC<FormComponentProps> = ({onSubmit}) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<datas>();
 
-  const handleForm = (data: FieldValues) => {};
+  const handleForm: SubmitHandler<datas> = (data) => {
+    onSubmit(data);
+
+    reset();
+  };
   return (
     <>
-      {/* <p className="text-danger"></p> */}
       <Formcontainer>
         <Form onSubmit={handleSubmit(handleForm)} action="">
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -47,7 +61,7 @@ const expenseForm = () => {
             <Form.Control
               type="number"
               placeholder="$"
-              {...register("amount", { required: true })}
+              {...register("amount", { required: true})}
             />
             {errors.amount && <p className="text-danger">Amount is required</p>}
           </Form.Group>

@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState } from "react";
 import "./App.css";
 import ExpenseForm from "./components/expenseForm";
-import TableFilter from './components/tableFilter';
+import TableFilter from "./components/tableFilter";
 
 interface datas {
   description: string;
@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       <ExpenseForm onSubmit={dataHandler} />
-      
+
       <TableFilter value={data} onDelete={onDelete} categories={categoriesD} />
     </>
   );

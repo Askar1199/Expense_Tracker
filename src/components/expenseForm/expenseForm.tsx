@@ -5,7 +5,6 @@ import "../styleComp.css";
 import Formcontainer from "../formcontainer";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-
 interface datas {
   description: string;
   amount: Number;
@@ -16,7 +15,7 @@ interface FormComponentProps {
   onSubmit: (data: datas) => void;
 }
 
-const expenseForm: React.FC<FormComponentProps> = ({onSubmit}) => {
+const expenseForm: React.FC<FormComponentProps> = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -32,9 +31,10 @@ const expenseForm: React.FC<FormComponentProps> = ({onSubmit}) => {
   return (
     <>
       <Formcontainer>
+        <h1 className="textH mb-5  text-center">Expense Cart</h1>
         <Form onSubmit={handleSubmit(handleForm)} action="">
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Description</Form.Label>
+            <Form.Label className="textM">Description</Form.Label>
             <Form.Control
               type="text"
               placeholder=""
@@ -57,17 +57,17 @@ const expenseForm: React.FC<FormComponentProps> = ({onSubmit}) => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Amount</Form.Label>
+            <Form.Label className="textM">Amount</Form.Label>
             <Form.Control
               type="number"
               placeholder="$"
-              {...register("amount", { required: true})}
+              {...register("amount", { required: true })}
             />
             {errors.amount && <p className="text-danger">Amount is required</p>}
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Category</Form.Label>
+            <Form.Label className="textM">Category</Form.Label>
             <Form.Select {...register("category", { required: true })}>
               <option hidden value="">
                 Select one...

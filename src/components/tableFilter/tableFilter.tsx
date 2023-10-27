@@ -17,27 +17,29 @@ interface tabledata {
   categories: string[];
 }
 const tableFilter = ({ value, onDelete, categories }: tabledata) => {
-    const [selectedCategory, setSelectedCategory] = useState<string | "all">(
-      "all"
-    );
+  const [selectedCategory, setSelectedCategory] = useState<string | "all">(
+    "all"
+  );
 
-    const filteredData =
-      selectedCategory === "all"
-        ? value
-        : value.filter((item) => item.category === selectedCategory);
+  const filteredData =
+    selectedCategory === "all"
+      ? value
+      : value.filter((item) => item.category === selectedCategory);
   return (
     <>
       {value.length > 0 && (
         <Formcontainer>
           <Form.Group className="mb-3">
-            <Form.Label>Disabled select menu</Form.Label>
+            <Form.Label className="textM">Select the category</Form.Label>
             <Form.Select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
               <option value="all">All</option>
-              {categories.map((key,ind) => (
-                <option key={ind} value={key}>{key}</option>
+              {categories.map((key, ind) => (
+                <option key={ind} value={key}>
+                  {key}
+                </option>
               ))}
             </Form.Select>
           </Form.Group>

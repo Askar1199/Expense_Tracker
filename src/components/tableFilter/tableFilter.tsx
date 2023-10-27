@@ -43,7 +43,7 @@ const tableFilter = ({ value, onDelete, categories }: tabledata) => {
               ))}
             </Form.Select>
           </Form.Group>
-          <Table striped bordered hover className="mt-3">
+          <Table striped bordered hover className="mt-3 text-center">
             <thead>
               <tr>
                 <th>Description</th>
@@ -56,7 +56,7 @@ const tableFilter = ({ value, onDelete, categories }: tabledata) => {
               {filteredData.map((item, index) => (
                 <tr key={index}>
                   <td>{item.description}</td>
-                  <td>{item.amount.toString()}</td>
+                  <td> $ {item.amount.toString()}.00</td>
                   <td>{item.category}</td>
                   <td>
                     <Button

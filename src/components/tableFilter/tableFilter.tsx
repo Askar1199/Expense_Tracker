@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Formcontainer from "../formcontainer";
 import "../styleComp.css";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 interface datas {
   description: string;
@@ -25,6 +25,14 @@ const tableFilter = ({ value, onDelete, categories }: tabledata) => {
     selectedCategory === "all"
       ? value
       : value.filter((item) => item.category === selectedCategory);
+
+  const totalAmount = useMemo(() => {
+    return filteredData.reduce((total: number, submission) => {
+      const amnt = submission.amount || 0;
+      return total + Number(amnt);
+    }, 0);
+  }, [filteredData]);
+
   return (
     <>
       {value.length > 0 && (
@@ -69,6 +77,12 @@ const tableFilter = ({ value, onDelete, categories }: tabledata) => {
                   </td>
                 </tr>
               ))}
+              <tr>
+                <th>Total</th>
+                <th> $ {totalAmount}.00</th>
+                <td></td>
+                <td></td>
+              </tr>
             </tbody>
           </Table>
         </Formcontainer>
